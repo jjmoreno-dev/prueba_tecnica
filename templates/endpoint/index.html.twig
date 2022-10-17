@@ -1,0 +1,87 @@
+
+
+<!DOCTYPE html>
+
+<head>
+    <title>Untitled-2</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.4/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.4/js/responsive.bootstrap4.min.js"></script>
+
+</head>
+
+<body>
+<section id="section-header" name="section-header" class="section-header">
+ <h1>Silver Company! ✅</h1></section>
+ <br>
+ <section id="section-body" name="section-body" class="section-body">
+
+    <div class="container">
+        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>nombre 1</th>
+                    <th>posicion 2</th>
+                    <th>salario 3</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    </section>
+
+</body>
+<script type="text/javascript">
+        $(document).ready(function () {
+            //$('#example').DataTable();
+            $.ajax({
+                "url": "./api",
+                "type": "GET",
+                "datatype": 'json',
+                 
+                "success": function (data) {
+                    $('#example').DataTable({
+                        data: data,
+                //"paging": false,
+                        columns: [
+                            { 'data': 'id' },
+                            { 'data': 'name' },
+                            { 'data': 'acronym' },
+                           
+                        ],
+                        language: {
+                processing: "Procesando...",
+                search: "<span class='badge'>Buscar</span>",
+                lengthMenu: "Mostrar _MENU_ Elementos",
+                info: "Mostrando _START_ de _END_ de _TOTAL_ Registro",
+                infoEmpty: "Ningun elemento encontrado",
+                infoFiltered: "(Total _MAX_ Registrados)",
+                //  infoPostFix:    "",
+                // loadingRecords: "Chargement en cours...",
+                zeroRecords: "No existen elementos referentes a la busqueda",
+                emptyTable: "Aun no se a efectuado ningun registro",
+                paginate: {
+                    first: "Primer",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+            },
+                    });
+                }
+            });
+        });
+    </script>
+
+</html>
